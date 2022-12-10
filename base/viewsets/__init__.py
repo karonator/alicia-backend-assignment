@@ -1,5 +1,7 @@
 __all__ = (
-    'ProductViewSet'
+    'ProductViewSet',
+    'CartItemViewSet'
 )
 
 from .product import ProductViewSet
+from .cart_item import CartItemViewSet

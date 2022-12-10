@@ -74,3 +74,8 @@ class CartItem(models.Model):
         default=0,
         verbose_name='Amount'
     )
+
+    class Meta:
+        ordering = ('user',)
+        verbose_name = 'Cart item'
+        verbose_name_plural = 'Cart items'

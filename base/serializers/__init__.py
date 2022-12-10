@@ -1,6 +1,16 @@
 __all__ = (
     'ProductShortSerializer',
-    'ProductFullSerializer'
+    'ProductFullSerializer',
+    'CartItemSerializer',
+    'CartItemFullSerializer'
 )
 
-from .product import ProductShortSerializer, ProductFullSerializer
+from .product import (
+    ProductShortSerializer,
+    ProductFullSerializer,
+)
+
+from .cart_item import (
+    CartItemSerializer,
+    CartItemFullSerializer
+)
