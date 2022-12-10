@@ -1,0 +1,33 @@
+version: "3.9"
+
+networks:
+  alicia:
+
+services:
+  db:
+    image: postgres:alpine
+    environment:
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASS}
+    networks:
+      - alicia
+  server:
+    build: .
+    command: python manage.py runserver 0.0.0.0:80
+    user: "${UID}:${GID}"
+    environment:
+      - DB_HOST=db
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASS=${DB_PASS}
+      - SECRET_KEY=${SECRET_KEY}
+      - SERVER_DEBUG_MODE=True
+    volumes:
+      - .:/app
+    ports:
+      - 80:80
+    networks:
+      - alicia
+    depends_on:
+      - db

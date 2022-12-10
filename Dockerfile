@@ -1,6 +1,9 @@
 FROM python:3.10
 LABEL author='Alicia'
 
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONDONTWRITEBYTECODE=1
+
 WORKDIR /app
 
 # Environment
@@ -21,10 +24,8 @@ COPY . .
 RUN ./manage.py collectstatic --noinput
 
 # Ops Parameters
-ENV WORKERS=2
-ENV PORT=80
-ENV PYTHONUNBUFFERED=1
+# ENV WORKERS=2
+# ENV PORT=80
 
-EXPOSE ${PORT}
-
-CMD uwsgi --http :${PORT} --processes ${WORKERS} --static-map /static=/static --module autocompany.wsgi:application
+# EXPOSE ${PORT}
+# CMD uwsgi --http :${PORT} --processes ${WORKERS} --static-map /static=/static --module autocompany.wsgi:application
