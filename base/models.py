@@ -79,3 +79,45 @@ class CartItem(models.Model):
         ordering = ('user',)
         verbose_name = 'Cart item'
         verbose_name_plural = 'Cart items'
+
+
+class Order(models.Model):
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='orders',
+        verbose_name='User'
+    )
+    delivery_time = models.DateTimeField(
+        verbose_name='Date'
+    )
+    created = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name='Created'
+    )
+
+    class Meta:
+        verbose_name = 'Order'
+        verbose_name_plural = 'Orders'
+
+
+class OrderItem(models.Model):
+    order = models.ForeignKey(
+        Order,
+        on_delete=models.CASCADE,
+        verbose_name='Order',
+        related_name='items'
+    )
+    product = models.ForeignKey(
+        Product,
+        on_delete=models.CASCADE,
+        verbose_name='Product'
+    )
+    amount = models.IntegerField(
+        default=0,
+        verbose_name='Amount'
+    )
+
+    class Meta:
+        verbose_name = 'Order item'
+        verbose_name_plural = 'Order items'
