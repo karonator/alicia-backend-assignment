@@ -15,6 +15,13 @@ class OrderItemSerializer(serializers.ModelSerializer):
 class OrderSerializer(serializers.ModelSerializer):
     items = OrderItemSerializer(read_only=True, many=True)
 
+    def validate(self, data):
+        user = self.context.get('request').user
+        cart_items_count = CartItem.objects.filter(user=user).count()
+        if cart_items_count == 0:
+            raise serializers.ValidationError('User cart is empty')
+        return data
+
     def create(self, validated_data):
         user = self.context.get('request').user
         cart = CartItem.objects.filter(user=user)
