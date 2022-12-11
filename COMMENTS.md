@@ -78,7 +78,7 @@ Allowed methods: GET, auth required: no
     "price": 9.9
 }
 ```
-
+___
 ### cart_item
 Allowing to create, get, and delete cart_item's
 
@@ -129,7 +129,7 @@ Params: product: 1, amount: 5
 **Response**
 
 Empty message with status code 200
-
+___
 ### order
 
 Allowing to create, get, list orders
