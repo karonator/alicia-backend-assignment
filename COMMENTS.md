@@ -19,6 +19,7 @@ Server is configured to use PostgreSQL database, so I added the corresponding co
 After server and DB startup, please use this commands to migrate DB and create user:
 
 ``` docker exec -it alicia-backend-assignment-server-1 python manage.py migrate ```
+
 ``` docker exec -it alicia-backend-assignment-server-1 python manage.py createsuperuser ```
 
 (Container name may differ from alicia-backend-assignment-server-1)
@@ -26,11 +27,13 @@ After this, login to admin panel at ``` http://127.0.0.1/admin/ ```
 
 ## Endpoints
 
-#### product
+### product
 Allowing to list all products (short presentation), and to see a detailed representation of product
+
 Allowed methods: GET, auth required: no
 
 **Request: all products**
+
 ``` GET: 127.0.0.1/api/v1/product/ ```
 
 **Response**
@@ -54,6 +57,7 @@ Allowed methods: GET, auth required: no
 ```
 
 **Request: one product**
+
 ``` GET: 127.0.0.1/api/v1/product/1 ```
 
 **Response**
@@ -75,14 +79,17 @@ Allowed methods: GET, auth required: no
 }
 ```
 
-#### cart_item
+### cart_item
 Allowing to create, get, and delete cart_item's
+
 Allowed methods: GET, POST, DELETE, auth required: basic auth
 
 If the product already exists in cart, instead of creating a new cart item, the amount of products in the cart will be increased.
 
 **Request: create cart_item (adding product to cart)**
+
 ``` POST: 127.0.0.1/api/v1/cart_item ```
+
 Params: product: 1, amount: 5
 
 **Response**
@@ -95,6 +102,7 @@ Params: product: 1, amount: 5
 ```
 
 **Request: list cart items**
+
 ``` GET: 127.0.0.1/api/v1/cart_item ```
 
 **Response**
@@ -114,21 +122,27 @@ Params: product: 1, amount: 5
 ]
 ```
 
-**Request: delete cart items**
+**Request: delete cart item**
+
 ``` DELETE: 127.0.0.1/api/v1/cart_item/7 ```
 
 **Response**
-Empty massage woth status code 200
 
-#### order
+Empty message with status code 200
+
+### order
+
 Allowing to create, get, list orders
+
 Allowed methods: GET, POST, auth required: basic auth
 
 If cart is empty, the request will fail with an error.
 If not, the cart will clear.
 
 **Request: create order**
+
 ``` POST: 127.0.0.1/api/v1/order ```
+
 Params: delivery_time: 2022-12-10T22:25:17+0000
 
 **Response**
@@ -153,6 +167,7 @@ Params: delivery_time: 2022-12-10T22:25:17+0000
 ```
 
 **Request: get one order**
+
 ``` GET: 127.0.0.1/api/v1/order/1 ```
 
 
@@ -178,6 +193,7 @@ Params: delivery_time: 2022-12-10T22:25:17+0000
 ```
 
 **Request: list orders**
+
 ``` GET: 127.0.0.1/api/v1/order ```
 
 
