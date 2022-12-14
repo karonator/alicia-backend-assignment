@@ -10,8 +10,8 @@ class ProductViewSet(ReadOnlyModelViewSet):
     permission_classes = [AllowAny]
 
     def get_serializer_class(self):
-        if self.action == 'list':
+        if self.action == "list":
             return ProductShortSerializer
-        if self.action == 'retrieve':
+        if self.action == "retrieve":
             return ProductFullSerializer
         return None

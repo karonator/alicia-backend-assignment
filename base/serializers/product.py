@@ -6,13 +6,13 @@ from base.models import Product, ProductProperty
 class ProductShortSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
-        fields = ('id', 'title', 'sku', 'short', 'price')
+        fields = ("id", "title", "sku", "short", "price")
 
 
 class ProductPropertySerializer(serializers.ModelSerializer):
     class Meta:
         model = ProductProperty
-        exclude = ('product',)
+        exclude = ("product",)
 
 
 class ProductFullSerializer(serializers.ModelSerializer):
@@ -20,4 +20,4 @@ class ProductFullSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Product
-        fields = ('__all__')
+        fields = "__all__"

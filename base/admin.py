@@ -1,10 +1,6 @@
 from django.contrib import admin
 
-from base.models import (
-    Product, ProductProperty,
-    CartItem,
-    Order, OrderItem
-)
+from base.models import Product, ProductProperty, CartItem, Order, OrderItem
 
 
 class ProductPropertyAdmin(admin.TabularInline):
@@ -13,13 +9,15 @@ class ProductPropertyAdmin(admin.TabularInline):
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('title', 'sku', 'price')
-    inlines = [ProductPropertyAdmin, ]
+    list_display = ("title", "sku", "price")
+    inlines = [
+        ProductPropertyAdmin,
+    ]
 
 
 @admin.register(CartItem)
 class CartItemAdmin(admin.ModelAdmin):
-    list_display = ('product', 'user', 'amount')
+    list_display = ("product", "user", "amount")
 
 
 class OrderItemAdmin(admin.TabularInline):
@@ -28,5 +26,7 @@ class OrderItemAdmin(admin.TabularInline):
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('user', 'created', 'delivery_time')
-    inlines = [OrderItemAdmin, ]
+    list_display = ("user", "created", "delivery_time")
+    inlines = [
+        OrderItemAdmin,
+    ]

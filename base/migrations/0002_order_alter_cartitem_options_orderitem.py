@@ -9,38 +9,83 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('base', '0001_initial'),
+        ("base", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Order',
+            name="Order",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('delivery', models.DateField(verbose_name='Date')),
-                ('created', models.DateTimeField(auto_now_add=True, verbose_name='Created')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='orders', to=settings.AUTH_USER_MODEL, verbose_name='User')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("delivery", models.DateField(verbose_name="Date")),
+                (
+                    "created",
+                    models.DateTimeField(auto_now_add=True, verbose_name="Created"),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="orders",
+                        to=settings.AUTH_USER_MODEL,
+                        verbose_name="User",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Order',
-                'verbose_name_plural': 'Orders',
+                "verbose_name": "Order",
+                "verbose_name_plural": "Orders",
             },
         ),
         migrations.AlterModelOptions(
-            name='cartitem',
-            options={'ordering': ('user',), 'verbose_name': 'Cart item', 'verbose_name_plural': 'Cart items'},
+            name="cartitem",
+            options={
+                "ordering": ("user",),
+                "verbose_name": "Cart item",
+                "verbose_name_plural": "Cart items",
+            },
         ),
         migrations.CreateModel(
-            name='OrderItem',
+            name="OrderItem",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('amount', models.IntegerField(default=0, verbose_name='Amount')),
-                ('order', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='base.order', verbose_name='Order')),
-                ('product', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='base.product', verbose_name='Product')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("amount", models.IntegerField(default=0, verbose_name="Amount")),
+                (
+                    "order",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="base.order",
+                        verbose_name="Order",
+                    ),
+                ),
+                (
+                    "product",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="base.product",
+                        verbose_name="Product",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Order item',
-                'verbose_name_plural': 'Order items',
+                "verbose_name": "Order item",
+                "verbose_name_plural": "Order items",
             },
         ),
     ]
